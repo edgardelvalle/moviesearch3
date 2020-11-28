@@ -1,11 +1,11 @@
 import data from './movielistdummy';
 
-const MovieList = () => {
-  if (data.results.length === 0) {
+const MovieList = ({ movies }) => {
+  if (!movies) {
     return <div>No movies to display</div>;
   }
 
-  const renderMovies = data.results.map(movie => {
+  const renderMovies = movies.map(movie => {
     return (
       <div key={movie.id}>
         <img

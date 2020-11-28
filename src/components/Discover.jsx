@@ -8,7 +8,7 @@ const Discover = () => {
           <Link to="/discover/upcoming">Upcoming</Link>
         </li>
         <li>
-          <Link to="/discover/top rated">Top Rated</Link>
+          <Link to="/discover/top_rated">Top Rated</Link>
         </li>
         <li>
           <Link to="/discover/popular">Popular</Link>

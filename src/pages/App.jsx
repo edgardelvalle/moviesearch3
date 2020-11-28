@@ -14,8 +14,7 @@ const App = () => {
     <Router history={history}>
       <SearchBar />
       <Discover />
-      <Genres />
-      <Route exact path="/search/:movie">
+      <Route exact path="/search/:searchedMovies">
         <Search />
       </Route>
       <Route exact path="/discover/:discover">
