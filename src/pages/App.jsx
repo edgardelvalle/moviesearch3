@@ -9,27 +9,28 @@ import Movie from './Movie';
 
 import styled from 'styled-components';
 
+const history = createBrowserHistory();
+
 const NavWrapper = styled.div`
   display: flex;
-  width: 80%;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-around;
 `;
 
-const SearchBarWrapper = styled.div``;
-
-const history = createBrowserHistory();
+const DiscoverWrapper = styled.div`
+  width: 25%;
+`;
 
 const App = () => {
   return (
     <Router history={history}>
       <NavWrapper>
-        <Discover />
-        <SearchBarWrapper>
-          <SearchBar />
-        </SearchBarWrapper>
+        <DiscoverWrapper>
+          <Discover />
+        </DiscoverWrapper>
+        <SearchBar />
       </NavWrapper>
-      {/* <Route exact path="/">
+      <Route exact path="/">
         <Redirect to="/discover/popular" />
       </Route>
       <Route exact path="/search/:searchedMovies">
@@ -43,7 +44,7 @@ const App = () => {
       </Route>
       <Route exact path="/genre/:genre">
         <Genre />
-      </Route> */}
+      </Route>
     </Router>
   );
 };

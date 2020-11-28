@@ -13,7 +13,7 @@ const AppWrapper = styled.div`
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   display: flex;
   justify-content: center;
-  align-items: center;
+  flex-direction: column;
 `;
 
 const store = createStore(reducers, applyMiddleware(thunk));
