@@ -7,6 +7,8 @@ import { useEffect, useState } from 'react';
 
 const Discovery = props => {
   const [genreFilter, setGenreFilter] = useState({});
+  const [isFiltered, setIsFiltered] = useState(false);
+  console.log(isFiltered);
 
   const {
     movies: { data },
@@ -23,14 +25,27 @@ const Discovery = props => {
     genres.data &&
     genres.data.genres.map(genre => (
       <li key={genre.id}>
-        <button onClick={() => setGenreFilter(genre)}>{genre.name}</button>
+        <button
+          onClick={() => {
+            if (isFiltered && genre.name === genreFilter.name) {
+              setIsFiltered(false);
+            } else {
+              setIsFiltered(true);
+              setGenreFilter(genre);
+            }
+          }}
+        >
+          {genre.name}
+        </button>
       </li>
     ));
 
   return (
     <div>
-      <h1>{discover.toUpperCase()}</h1>
-      <h2>{genreFilter.name}</h2>
+      <h1>
+        {discover.split('_').join(' ').toUpperCase()}
+        <span>{isFiltered && genreFilter.name}</span>
+      </h1>
       {genres.data && (
         <div>
           <ul>{renderGenres}</ul>
@@ -39,9 +54,13 @@ const Discovery = props => {
 
       {data && (
         <MovieList
-          movies={data.results.filter(movies =>
-            movies.genre_ids.includes(genreFilter.id)
-          )}
+          movies={
+            isFiltered
+              ? data.results.filter(movies =>
+                  movies.genre_ids.includes(genreFilter.id)
+                )
+              : data.results
+          }
         />
       )}
     </div>

@@ -1,5 +1,5 @@
 import SearchBar from '../components/SearchBar';
-import { Route, Router } from 'react-router-dom';
+import { Redirect, Route, Router } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import Genres from '../components/Genres';
 import Search from './Search';
@@ -14,6 +14,9 @@ const App = () => {
     <Router history={history}>
       <SearchBar />
       <Discover />
+      <Route path="/">
+        <Redirect to="/discover/popular" />
+      </Route>
       <Route exact path="/search/:searchedMovies">
         <Search />
       </Route>
