@@ -19,3 +19,9 @@ export const fetchGenres = () => async dispatch => {
 
   dispatch({ type: 'FETCH_GENRES', payload: response });
 };
+
+export const getMovieDetails = id => async dispatch => {
+  const response = await tmdb.get(`/movie/${id}`);
+
+  dispatch({ type: 'FETCH_DETAILS', payload: response });
+};

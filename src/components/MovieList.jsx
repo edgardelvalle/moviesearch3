@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import data from './movielistdummy';
 
 const MovieList = ({ movies }) => {
@@ -8,11 +9,16 @@ const MovieList = ({ movies }) => {
   const renderMovies = movies.map(movie => {
     return (
       <div key={movie.id}>
-        <img
-          src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-          alt={`${movie.title} poster`}
-        />
-        <h1>{movie.title}</h1>
+        <Link to={`/movie/${movie.id}`}>
+          <img
+            src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+            alt={`${movie.title} poster`}
+          />
+          <h1>{movie.title}</h1>
+        </Link>
+        {movie.genre_ids.map(genre => {
+          return <span>{genre} </span>;
+        })}
       </div>
     );
   });

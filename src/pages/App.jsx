@@ -6,6 +6,7 @@ import Search from './Search';
 import Discovery from './Discovery';
 import Discover from '../components/Discover';
 import Genre from './Genre';
+import Movie from './Movie';
 
 const history = createBrowserHistory();
 
@@ -14,11 +15,14 @@ const App = () => {
     <Router history={history}>
       <SearchBar />
       <Discover />
-      <Route path="/">
+      <Route exact path="/">
         <Redirect to="/discover/popular" />
       </Route>
       <Route exact path="/search/:searchedMovies">
         <Search />
+      </Route>
+      <Route exact path="/movie/:id">
+        <Movie />
       </Route>
       <Route exact path="/discover/:discover">
         <Discovery />

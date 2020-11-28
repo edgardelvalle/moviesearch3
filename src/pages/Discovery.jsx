@@ -35,9 +35,9 @@ const Discovery = props => {
       </li>
     ));
 
-  const filteredMovies = data.results.filter(movies =>
-    movies.genre_ids.includes(genreFilter.id)
-  );
+  const filteredMovies =
+    data &&
+    data.results.filter(movies => movies.genre_ids.includes(genreFilter.id));
 
   const header = discover.split('_').join(' ').toUpperCase();
 
