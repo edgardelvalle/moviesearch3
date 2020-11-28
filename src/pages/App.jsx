@@ -1,21 +1,35 @@
 import SearchBar from '../components/SearchBar';
 import { Redirect, Route, Router } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
-import Genres from '../components/Genres';
 import Search from './Search';
 import Discovery from './Discovery';
 import Discover from '../components/Discover';
 import Genre from './Genre';
 import Movie from './Movie';
 
+import styled from 'styled-components';
+
+const NavWrapper = styled.div`
+  display: flex;
+  width: 80%;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const SearchBarWrapper = styled.div``;
+
 const history = createBrowserHistory();
 
 const App = () => {
   return (
     <Router history={history}>
-      <SearchBar />
-      <Discover />
-      <Route exact path="/">
+      <NavWrapper>
+        <Discover />
+        <SearchBarWrapper>
+          <SearchBar />
+        </SearchBarWrapper>
+      </NavWrapper>
+      {/* <Route exact path="/">
         <Redirect to="/discover/popular" />
       </Route>
       <Route exact path="/search/:searchedMovies">
@@ -29,7 +43,7 @@ const App = () => {
       </Route>
       <Route exact path="/genre/:genre">
         <Genre />
-      </Route>
+      </Route> */}
     </Router>
   );
 };

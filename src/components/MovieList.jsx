@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import data from './movielistdummy';
 
 const MovieList = ({ movies }) => {
   if (!movies) {
