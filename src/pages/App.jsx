@@ -11,6 +11,10 @@ import styled from 'styled-components';
 
 const history = createBrowserHistory();
 
+const Wrapper = styled.div`
+  justify-self: center;
+`;
+
 const NavWrapper = styled.div`
   display: flex;
   align-items: center;

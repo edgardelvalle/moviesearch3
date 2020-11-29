@@ -34,8 +34,8 @@ const SearchBar = () => {
   }
 
   return (
-    <SearchWrapper>
-      <form onSubmit={handleSubmitForm}>
+    <form onSubmit={handleSubmitForm}>
+      <SearchWrapper>
         <Input
           placeholder="Search movie"
           type="text"
@@ -43,8 +43,8 @@ const SearchBar = () => {
           onChange={e => setQuery(e.target.value)}
         />
         <i class="fas fa-search search-icon"></i>
-      </form>
-    </SearchWrapper>
+      </SearchWrapper>
+    </form>
   );
 };
 

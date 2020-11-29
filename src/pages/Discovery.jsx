@@ -5,6 +5,32 @@ import { discoverMovies } from '../actions';
 import { fetchGenres } from '../actions';
 import { useEffect, useState } from 'react';
 
+import styled from 'styled-components';
+
+const GenreList = styled.ul`
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  justify-content: space-around;
+
+  button {
+    background: none;
+    border: none;
+    box-shadow: none;
+    &:hover {
+      cursor: pointer;
+      color: grey;
+    }
+  }
+`;
+
+const Subheader = styled.span`
+  font-size: 1rem;
+  color: gray;
+  margin-left: 5px;
+  font-weight: 400;
+`;
+
 const Discovery = props => {
   const [genreFilter, setGenreFilter] = useState({});
   const [isFiltered, setIsFiltered] = useState(false);
@@ -25,6 +51,7 @@ const Discovery = props => {
     genres.data.genres.map(genre => (
       <li key={genre.id}>
         <button
+          className={genreFilter.name == genre.name ? 'active' : ''}
           onClick={() => {
             setIsFiltered(true);
             setGenreFilter(genre);
@@ -45,16 +72,16 @@ const Discovery = props => {
     <div>
       <h1>
         {header}
-        <span>{isFiltered && genreFilter.name}</span>
+        <Subheader>{isFiltered && genreFilter.name}</Subheader>
       </h1>
       {genres.data && (
         <div>
-          <ul>
+          <GenreList>
             <li>
               <button onClick={() => setIsFiltered(false)}>All</button>
             </li>
             {renderGenres}
-          </ul>
+          </GenreList>
         </div>
       )}
 

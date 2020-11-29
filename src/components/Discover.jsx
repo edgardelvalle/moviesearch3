@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-const { Link } = require('react-router-dom');
+const { Link, NavLink } = require('react-router-dom');
 
 const List = styled.ul`
   list-style-type: none;
@@ -9,7 +9,6 @@ const List = styled.ul`
 `;
 
 const ListItem = styled.li`
-  color: black;
   font-size: 0.9rem;
   font-weight: 300;
 
@@ -21,7 +20,16 @@ const ListItem = styled.li`
     }
 
     &:hover {
-      color: gray;
+      color: grey;
+    }
+  }
+  .active {
+    color: black;
+    font-weight: 500;
+    cursor: default;
+
+    &:hover {
+      color: black;
     }
   }
 `;
@@ -30,13 +38,19 @@ const Discover = () => {
   return (
     <List>
       <ListItem>
-        <Link to="/discover/upcoming">Upcoming</Link>
+        <NavLink activeClassName="active" to="/discover/upcoming">
+          Upcoming
+        </NavLink>
       </ListItem>
       <ListItem>
-        <Link to="/discover/top_rated">Top Rated</Link>
+        <NavLink activeClassName="active" to="/discover/top_rated">
+          Top Rated
+        </NavLink>
       </ListItem>
       <ListItem>
-        <Link to="/discover/popular">Popular</Link>
+        <NavLink activeClassName="active" to="/discover/popular">
+          Popular
+        </NavLink>
       </ListItem>
     </List>
   );

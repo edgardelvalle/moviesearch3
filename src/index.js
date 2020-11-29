@@ -12,8 +12,8 @@ const AppWrapper = styled.div`
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   display: flex;
-  justify-content: center;
   flex-direction: column;
+  justify-content: space-around;
 `;
 
 const store = createStore(reducers, applyMiddleware(thunk));
