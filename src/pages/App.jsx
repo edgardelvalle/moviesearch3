@@ -11,9 +11,7 @@ import styled from 'styled-components';
 
 const history = createBrowserHistory();
 
-const Wrapper = styled.div`
-  justify-self: center;
-`;
+const Wrapper = styled.div``;
 
 const NavWrapper = styled.div`
   display: flex;
@@ -34,6 +32,7 @@ const App = () => {
         </DiscoverWrapper>
         <SearchBar />
       </NavWrapper>
+
       <Route exact path="/">
         <Redirect to="/discover/popular" />
       </Route>

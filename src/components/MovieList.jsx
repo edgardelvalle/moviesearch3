@@ -39,9 +39,9 @@ const MovieList = ({ movies }) => {
           />
           <h1>{movie.title}</h1>
         </Link>
-        {movie.genre_ids.map(genre => {
-          return <span>{genre} </span>;
-        })}
+        {/* {movies.genre_ids.map(name => (
+          <span>{name}</span>
+        ))} */}
       </MovieCard>
     );
   });

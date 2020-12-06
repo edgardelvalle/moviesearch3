@@ -72,7 +72,7 @@ const Discovery = props => {
     <div>
       <h1>
         {header}
-        <Subheader>{isFiltered && genreFilter.name}</Subheader>
+        <Subheader> {isFiltered && `> ${genreFilter.name}`}</Subheader>
       </h1>
       {genres.data && (
         <div>
