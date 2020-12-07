@@ -31,6 +31,7 @@ const SearchBar = () => {
   function handleSubmitForm(e) {
     e.preventDefault();
     history.push(`/search/${query}`);
+    setQuery('');
   }
 
   return (

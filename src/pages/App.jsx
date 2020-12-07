@@ -11,7 +11,11 @@ import styled from 'styled-components';
 
 const history = createBrowserHistory();
 
-const Wrapper = styled.div``;
+const Container = styled.div`
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  margin: 0 10%;
+`;
 
 const NavWrapper = styled.div`
   display: flex;
@@ -25,30 +29,32 @@ const DiscoverWrapper = styled.div`
 
 const App = () => {
   return (
-    <Router history={history}>
-      <NavWrapper>
-        <DiscoverWrapper>
-          <Discover />
-        </DiscoverWrapper>
-        <SearchBar />
-      </NavWrapper>
+    <Container>
+      <Router history={history}>
+        <NavWrapper>
+          <DiscoverWrapper>
+            <Discover />
+          </DiscoverWrapper>
+          <SearchBar />
+        </NavWrapper>
 
-      <Route exact path="/">
-        <Redirect to="/discover/popular" />
-      </Route>
-      <Route exact path="/search/:searchedMovies">
-        <Search />
-      </Route>
-      <Route exact path="/movie/:id">
-        <Movie />
-      </Route>
-      <Route exact path="/discover/:discover">
-        <Discovery />
-      </Route>
-      <Route exact path="/genre/:genre">
-        <Genre />
-      </Route>
-    </Router>
+        <Route exact path="/">
+          <Redirect to="/discover/popular" />
+        </Route>
+        <Route exact path="/search/:searchedMovies">
+          <Search />
+        </Route>
+        <Route exact path="/movie/:id">
+          <Movie />
+        </Route>
+        <Route exact path="/discover/:discover">
+          <Discovery />
+        </Route>
+        <Route exact path="/genre/:genre">
+          <Genre />
+        </Route>
+      </Router>
+    </Container>
   );
 };
 

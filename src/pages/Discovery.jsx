@@ -11,9 +11,11 @@ const GenreList = styled.ul`
   list-style-type: none;
   padding: 0;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-around;
 
   button {
+    font-size: 0.8rem;
     background: none;
     border: none;
     box-shadow: none;
