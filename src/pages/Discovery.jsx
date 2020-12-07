@@ -1,8 +1,8 @@
 import MovieList from '../components/MovieList';
 import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { discoverMovies } from '../actions';
-import { fetchGenres } from '../actions';
+import { getDiscoverMovies } from '../actions';
+import { getGenres } from '../actions';
 import { useEffect, useState } from 'react';
 
 import styled from 'styled-components';
@@ -36,21 +36,14 @@ const Subheader = styled.span`
 const Discovery = props => {
   const [genreFilter, setGenreFilter] = useState({});
   const [isFiltered, setIsFiltered] = useState(false);
-
-  const {
-    movies: { data },
-    genres,
-  } = props;
   const { discover } = useParams();
 
-  useEffect(() => {
-    props.discoverMovies(discover);
-    props.fetchGenres();
-  }, [discover]);
+  console.log(props);
 
-  const renderGenres =
-    genres.data &&
-    genres.data.genres.map(genre => (
+  const renderGenres = props.genres.loading ? (
+    <div>Loading Genres</div>
+  ) : (
+    props.genres.genres.map(genre => (
       <li key={genre.id}>
         <button
           className={genreFilter.name == genre.name ? 'active' : ''}
@@ -62,21 +55,35 @@ const Discovery = props => {
           {genre.name}
         </button>
       </li>
-    ));
+    ))
+  );
 
-  const filteredMovies =
-    data &&
-    data.results.filter(movies => movies.genre_ids.includes(genreFilter.id));
+  const filteredMovies = props.movies.loading ? (
+    <div>Loading...</div>
+  ) : (
+    props.movies.results.filter(movies =>
+      movies.genre_ids.includes(genreFilter.id)
+    )
+  );
 
   const header = discover.split('_').join(' ').toUpperCase();
 
-  return (
-    <div>
-      <h1>
-        {header}
-        <Subheader> {isFiltered && `> ${genreFilter.name}`}</Subheader>
-      </h1>
-      {genres.data && (
+  useEffect(() => {
+    props.getDiscoverMovies(discover);
+    props.getGenres();
+  }, [discover]);
+
+  if (props.movies.loading) {
+    return <div> Loading... </div>;
+  } else if (props.movies.results === 0) {
+    return <div>No movies found</div>;
+  } else {
+    return (
+      <div>
+        <h1>
+          {header}
+          <Subheader> {isFiltered && `> ${genreFilter.name}`}</Subheader>
+        </h1>
         <div>
           <GenreList>
             <li>
@@ -85,19 +92,20 @@ const Discovery = props => {
             {renderGenres}
           </GenreList>
         </div>
-      )}
 
-      {data && (
-        <MovieList movies={isFiltered ? filteredMovies : data.results} />
-      )}
-    </div>
-  );
+        <MovieList
+          movies={isFiltered ? filteredMovies : props.movies.results}
+        />
+      </div>
+    );
+  }
 };
 
 const mapStateToProps = state => {
-  return { movies: state.discoverMovies, genres: state.genres };
+  return { movies: state.movies, genres: state.genres };
 };
 
-export default connect(mapStateToProps, { discoverMovies, fetchGenres })(
-  Discovery
-);
+export default connect(mapStateToProps, {
+  getDiscoverMovies,
+  getGenres,
+})(Discovery);

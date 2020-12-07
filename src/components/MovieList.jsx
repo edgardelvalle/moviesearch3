@@ -10,10 +10,6 @@ const Cards = styled.div`
 `;
 
 const MovieList = ({ movies }) => {
-  if (!movies) {
-    return <div>No movies to display</div>;
-  }
-
   const renderMovies = movies.map(movie => {
     return <MovieCard movie={movie} />;
   });

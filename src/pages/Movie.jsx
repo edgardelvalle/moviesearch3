@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 
 const Movie = props => {
   const { movie } = props;
+  console.log(props);
 
   const { id } = useParams();
 
@@ -13,7 +14,15 @@ const Movie = props => {
     props.getMovieDetails(id);
   }, [id]);
 
-  return <div>{movie && <MovieDetail movie={movie.data} />}</div>;
+  if (props.movie.loading) {
+    return <div>Loading...</div>;
+  }
+
+  return (
+    <div>
+      <MovieDetail movie={movie} />
+    </div>
+  );
 };
 
 const mapStateToProps = state => {

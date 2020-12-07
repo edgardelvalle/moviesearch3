@@ -69,10 +69,6 @@ const MovieDetail = ({ movie }) => {
     }
   `;
 
-  if (!movie) {
-    return <div>No movie found</div>;
-  }
-
   const {
     belongs_to_collection,
     genres,

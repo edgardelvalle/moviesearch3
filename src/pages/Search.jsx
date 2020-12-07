@@ -2,27 +2,32 @@ import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import MovieList from '../components/MovieList';
-import { searchMovie } from '../actions/index';
-import { fetchGenres } from '../actions/index';
+import { getSearchedMovie } from '../actions/index';
 
 const Search = props => {
-  const { movies, genres } = props;
-
+  const { movies } = props;
   const { searchedMovies } = useParams();
+
   useEffect(() => {
-    props.searchMovie(searchedMovies);
+    props.getSearchedMovie(searchedMovies);
   }, [searchedMovies]);
 
-  return (
-    <div>
-      <h1>{searchedMovies.toUpperCase()}</h1>
-      {movies.data && <MovieList movies={movies.data.results} />}
-    </div>
-  );
+  if (movies.loading) {
+    return <div>Loading</div>;
+  } else if (movies === 0) {
+    return <div>No movies found</div>;
+  } else {
+    return (
+      <div>
+        <h1>{searchedMovies.toUpperCase()}</h1>
+        <MovieList movies={movies.results} />
+      </div>
+    );
+  }
 };
 
 const mapStateToProps = state => {
-  return { movies: state.searchedMovies, genres: state.genres };
+  return { movies: state.movies };
 };
 
-export default connect(mapStateToProps, { searchMovie, fetchGenres })(Search);
+export default connect(mapStateToProps, { getSearchedMovie })(Search);

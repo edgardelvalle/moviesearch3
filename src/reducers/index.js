@@ -1,12 +1,10 @@
 import { combineReducers } from 'redux';
-import searchMovieReducer from './searchMovieReducer';
-import discoverMovieReducer from './discoverMovieReducer';
 import genreReducer from './genreReducer';
 import movieDetailReducer from './movieDetailReducer';
+import moviesReducer from './moviesReducer';
 
 export default combineReducers({
-  searchedMovies: searchMovieReducer,
-  discoverMovies: discoverMovieReducer,
+  movies: moviesReducer,
   genres: genreReducer,
   movieDetail: movieDetailReducer,
 });
