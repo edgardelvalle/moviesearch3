@@ -38,8 +38,6 @@ const Discovery = props => {
   const [isFiltered, setIsFiltered] = useState(false);
   const { discover } = useParams();
 
-  console.log(props);
-
   const renderGenres = props.genres.loading ? (
     <div>Loading Genres</div>
   ) : (

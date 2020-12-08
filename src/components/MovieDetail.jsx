@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import moment from 'moment';
+import MovieList from './MovieList';
 
-const MovieDetail = ({ movie }) => {
+const MovieDetail = ({ movie, collection }) => {
   const Container = styled.div`
     display: flex;
-    margin: 2.5%;
     flex-direction: column;
     align-items: flex-start;
   `;
@@ -14,34 +14,30 @@ const MovieDetail = ({ movie }) => {
   `;
 
   const PosterContainer = styled.div`
-    width: 75%;
     align-self: center;
     position: relative;
     font-size: 2vw;
+    overflow: hidden;
 
     #title {
-      color: white;
-      background-image: linear-gradient(0deg, black, transparent);
-      position: absolute;
-      border-bottom-right-radius: 20px;
-      border-bottom-left-radius: 20px;
-
-      right: 0;
-      left: 0;
-      bottom: 0;
-      margin: 0;
+      width: 100%;
+      background: linear-gradient(0deg, black, transparent);
     }
   `;
 
   const Poster = styled.img`
     width: 100%;
     height: auto;
-    border-radius: 20px;
+    overflow: hidden;
   `;
 
   const Title = styled.h1`
+    width: 100%;
+    height: auto;
+    color: white;
+    position: absolute;
     margin: 0;
-    padding: 20px;
+    bottom: 0;
   `;
 
   const Details = styled.div`
@@ -58,16 +54,11 @@ const MovieDetail = ({ movie }) => {
   `;
 
   const Overview = styled.p`
-    width: 50%;
     font-style: italic;
     line-height: 2rem;
-
-    #summary {
-      font-weight: 700;
-      display: block;
-      font-style: normal;
-    }
   `;
+
+  const CollectionContainer = styled.div``;
 
   const {
     belongs_to_collection,
@@ -82,6 +73,22 @@ const MovieDetail = ({ movie }) => {
     overview,
   } = movie;
 
+  const Collection = () => {
+    if (belongs_to_collection) {
+      if (collection.loading) {
+        return <div>Loading...</div>;
+      } else {
+        return (
+          <CollectionContainer>
+            <MovieList movies={collection.parts} />
+          </CollectionContainer>
+        );
+      }
+    } else {
+      return <div>This movie is not a part of any collection</div>;
+    }
+  };
+
   return (
     <Container>
       <PosterContainer className="Poster container">
@@ -94,10 +101,7 @@ const MovieDetail = ({ movie }) => {
         </div>
       </PosterContainer>
       <Tagline>{tagline}</Tagline>
-      <Overview>
-        <span id="summary">Summary: </span>
-        {overview}
-      </Overview>
+      <Overview>{overview}</Overview>
       <Details>
         <h3 className="info">Info</h3>
 
@@ -121,10 +125,7 @@ const MovieDetail = ({ movie }) => {
         <span className="info-items">Rated:</span>
         <p>{vote_average} </p>
       </Details>
-      <div>
-        <p>Collection: </p>
-        <p>{belongs_to_collection && belongs_to_collection.name}</p>
-      </div>
+      <Collection />
     </Container>
   );
 };

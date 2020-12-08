@@ -9,7 +9,9 @@ const MovieCard = ({ movie }) => {
 
   const Container = styled(motion.div)`
     position: relative;
-    width: 300px;
+    width: 250px;
+    height: auto;
+    max-height: 470px;
     margin: 10px;
     overflow: hidden;
     background-size: cover;

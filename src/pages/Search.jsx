@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import MovieList from '../components/MovieList';
-import { getSearchedMovie } from '../actions/index';
+import { getSearchedMovie, clearMovies } from '../actions/index';
 
 const Search = props => {
   const { movies } = props;
@@ -10,6 +10,7 @@ const Search = props => {
 
   useEffect(() => {
     props.getSearchedMovie(searchedMovies);
+    return () => props.clearMovies();
   }, [searchedMovies]);
 
   if (movies.loading) {
@@ -30,4 +31,6 @@ const mapStateToProps = state => {
   return { movies: state.movies };
 };
 
-export default connect(mapStateToProps, { getSearchedMovie })(Search);
+export default connect(mapStateToProps, { getSearchedMovie, clearMovies })(
+  Search
+);
