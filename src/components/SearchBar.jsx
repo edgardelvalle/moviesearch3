@@ -5,23 +5,32 @@ import styled from 'styled-components';
 const SearchWrapper = styled.div`
   display: flex;
   position: relative;
-
-  .search-icon {
-    color: grey;
-    position: absolute;
-    top: 8px;
-    left: 8px;
-    width: 14px;
-  }
+  justify-content: center;
 `;
 
 const Input = styled.input`
-  border: 1px solid grey;
-  border-radius: 5px;
-  height: 25px;
-  padding: 2px 23px 2px 30px;
-  outline: 0;
-  background-color: #f5f5f5;
+  position: absolute;
+  bottom: -17px;
+
+  background: url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png)
+    no-repeat 9px center;
+  border: none;
+  padding: 9px 5px 9px 32px;
+  width: 30px;
+  color: transparent;
+  cursor: pointer;
+  outline: none;
+  border-radius: 10em;
+  transition: all 0.5s;
+
+  :focus {
+    border: solid 1px #ccc;
+    width: 170px;
+    padding-left: 32px;
+    color: #000;
+    background-color: #fff;
+    cursor: auto;
+  }
 `;
 
 const SearchBar = () => {
@@ -30,22 +39,24 @@ const SearchBar = () => {
 
   function handleSubmitForm(e) {
     e.preventDefault();
-    history.push(`/search/${query}`);
-    setQuery('');
+    if (query) {
+      history.push(`/search/${query}`);
+      setQuery('');
+    }
   }
 
   return (
-    <form onSubmit={handleSubmitForm}>
-      <SearchWrapper>
+    <SearchWrapper>
+      <form onSubmit={handleSubmitForm}>
         <Input
+          key="query"
           placeholder="Search movie"
-          type="text"
+          type="search"
           value={query}
           onChange={e => setQuery(e.target.value)}
         />
-        <i class="fas fa-search search-icon"></i>
-      </SearchWrapper>
-    </form>
+      </form>
+    </SearchWrapper>
   );
 };
 

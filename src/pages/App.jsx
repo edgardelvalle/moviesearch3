@@ -8,6 +8,7 @@ import Genre from './Genre';
 import Movie from './Movie';
 
 import styled from 'styled-components';
+import { useState } from 'react';
 
 const history = createBrowserHistory();
 
@@ -17,26 +18,21 @@ const Container = styled.div`
   margin: 0 10%;
 `;
 
-const NavWrapper = styled.div`
+const DiscoverWrapper = styled.div`
+  width: 80vw;
   display: flex;
   align-items: center;
-  justify-content: space-around;
-`;
-
-const DiscoverWrapper = styled.div`
-  width: 25%;
+  justify-content: center;
 `;
 
 const App = () => {
   return (
     <Container>
       <Router history={history}>
-        <NavWrapper>
-          <DiscoverWrapper>
-            <Discover />
-          </DiscoverWrapper>
+        <DiscoverWrapper className="Nav">
+          <Discover />
           <SearchBar />
-        </NavWrapper>
+        </DiscoverWrapper>
 
         <Route exact path="/">
           <Redirect to="/discover/popular" />

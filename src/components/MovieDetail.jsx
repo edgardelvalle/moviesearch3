@@ -7,35 +7,53 @@ const MovieDetail = ({ movie, collection }) => {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+
+    .data {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 3rem;
+    }
   `;
 
   const Tagline = styled.h2`
+    font-size: 3vw;
+    margin: 2rem;
     align-self: center;
   `;
 
   const PosterContainer = styled.div`
+    background-color: black;
+    width: auto;
+    max-width: 60vw;
+    height: auto;
     align-self: center;
     position: relative;
     font-size: 2vw;
     overflow: hidden;
+    border-radius: 20px;
 
     #title {
       width: 100%;
-      background: linear-gradient(0deg, black, transparent);
     }
+
+    box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+      0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
+      0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+      0 100px 80px rgba(0, 0, 0, 0.12);
   `;
 
   const Poster = styled.img`
     width: 100%;
-    height: auto;
+    height: 100%;
     overflow: hidden;
   `;
 
   const Title = styled.h1`
+    background: linear-gradient(0deg, black);
     width: 100%;
-    height: auto;
     color: white;
     position: absolute;
+    padding-left: 10px;
     margin: 0;
     bottom: 0;
   `;
@@ -45,17 +63,22 @@ const MovieDetail = ({ movie, collection }) => {
     align-items: flex-start;
     line-height: 0.75rem;
 
-    .info {
-      font-size: 1.5rem;
-    }
     .info-items {
-      font-weight: 700;
+      font-weight: 400;
+    }
+
+    .info-detail {
+      font-weight: 600;
     }
   `;
 
   const Overview = styled.p`
-    font-style: italic;
+    font-weight: 400;
     line-height: 2rem;
+    width: 50%;
+    padding-left: 25px;
+
+    border-left: 1px solid gray;
   `;
 
   const CollectionContainer = styled.div``;
@@ -66,7 +89,6 @@ const MovieDetail = ({ movie, collection }) => {
     original_title,
     backdrop_path,
     tagline,
-    revenue,
     runtime,
     vote_average,
     release_date,
@@ -91,6 +113,7 @@ const MovieDetail = ({ movie, collection }) => {
 
   return (
     <Container>
+      <Tagline>{tagline}</Tagline>
       <PosterContainer className="Poster container">
         <Poster
           src={`https://image.tmdb.org/t/p/original/${backdrop_path}`}
@@ -100,31 +123,27 @@ const MovieDetail = ({ movie, collection }) => {
           <Title>{movie.title}</Title>
         </div>
       </PosterContainer>
-      <Tagline>{tagline}</Tagline>
-      <Overview>{overview}</Overview>
-      <Details>
-        <h3 className="info">Info</h3>
-
-        <span className="info-items">Duration:</span>
-        <p>{`${Math.floor(runtime / 60)} h ${runtime % 60} min`} </p>
-        <span className="info-items">Release Date:</span>
-        <p>{moment(release_date).format('MMM Do, YYYY')}</p>
-        <span className="info-items">Genres:</span>
-        <p>
-          {genres.map(genre => (
-            <span>{genre.name} </span>
-          ))}
-        </p>
-        <span className="info-items">Revenue:</span>
-        <p>
-          {revenue.toLocaleString('en-US', {
-            style: 'currency',
-            currency: 'USD',
-          })}
-        </p>
-        <span className="info-items">Rated:</span>
-        <p>{vote_average} </p>
-      </Details>
+      <div className="data">
+        <Details>
+          <span className="info-items">Duration:</span>
+          <p className="info-detail">
+            {`${Math.floor(runtime / 60)} h ${runtime % 60} min`}{' '}
+          </p>
+          <span className="info-items">Release Date:</span>
+          <p className="info-detail">
+            {moment(release_date).format('MMM Do, YYYY')}
+          </p>
+          <span className="info-items">Genres:</span>
+          <p>
+            {genres.map(genre => (
+              <span className="info-detail">{genre.name} </span>
+            ))}
+          </p>
+          <span className="info-items">Rated:</span>
+          <p className="info-detail">{vote_average} </p>
+        </Details>
+        <Overview>{overview}</Overview>
+      </div>
       <Collection />
     </Container>
   );

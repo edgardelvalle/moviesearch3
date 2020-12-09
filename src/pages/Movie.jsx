@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { getMovieDetails, clearMovie, getCollection } from '../actions';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import Loader from '../components/Loader';
 
 const Movie = props => {
   const { movie, collection } = props;
@@ -16,7 +17,7 @@ const Movie = props => {
   const RenderCollections = () => {};
 
   if (movie.loading) {
-    return <div>Loading...</div>;
+    return <Loader />;
   } else {
     return (
       <div>

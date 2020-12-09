@@ -6,6 +6,7 @@ import { getGenres } from '../actions';
 import { useEffect, useState } from 'react';
 
 import styled from 'styled-components';
+import Loader from '../components/Loader';
 
 const GenreList = styled.ul`
   list-style-type: none;
@@ -57,7 +58,7 @@ const Discovery = props => {
   );
 
   const filteredMovies = props.movies.loading ? (
-    <div>Loading...</div>
+    <Loader />
   ) : (
     props.movies.results.filter(movies =>
       movies.genre_ids.includes(genreFilter.id)
@@ -72,7 +73,7 @@ const Discovery = props => {
   }, [discover]);
 
   if (props.movies.loading) {
-    return <div> Loading... </div>;
+    return <Loader />;
   } else if (props.movies.results === 0) {
     return <div>No movies found</div>;
   } else {

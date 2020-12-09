@@ -1,10 +1,13 @@
+import { useState } from 'react';
 import styled from 'styled-components';
-const { Link, NavLink } = require('react-router-dom');
+
+const { NavLink, useParams } = require('react-router-dom');
 
 const List = styled.ul`
   list-style-type: none;
   padding: 0;
   display: flex;
+  width: 30%;
   justify-content: space-around;
 `;
 

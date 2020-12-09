@@ -10,12 +10,14 @@ const MovieCard = ({ movie }) => {
   const Container = styled(motion.div)`
     position: relative;
     width: 250px;
-    height: auto;
+    height: 375px;
     max-height: 470px;
     margin: 10px;
     overflow: hidden;
     background-size: cover;
     transition: visibility ease-in-out 2ms;
+    background-color: gray;
+    border-radius: 20px;
 
     a {
       text-decoration: none;
@@ -36,7 +38,8 @@ const MovieCard = ({ movie }) => {
   `;
 
   const Poster = styled.img`
-    width: 100%;
+    width: auto;
+    height: 100%;
   `;
 
   const Title = styled.h1`
@@ -50,7 +53,7 @@ const MovieCard = ({ movie }) => {
 
     padding: 10px;
 
-    background-image: linear-gradient(0deg, #1c1c1c, transparent);
+    background-image: linear-gradient(0deg, black, transparent);
     overflow: hidden;
     visibility: hidden;
     opacity: 0;
