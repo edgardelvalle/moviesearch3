@@ -62,7 +62,7 @@ const MovieCard = ({ movie }) => {
 
   return (
     <Container whileHover={{ scale: 1.05 }}>
-      <Link to={`/movie/${movie.id}`}>
+      <Link to={`/moviesearch3/movie/${movie.id}`}>
         <Poster
           src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
           alt={`${movie.title} poster`}

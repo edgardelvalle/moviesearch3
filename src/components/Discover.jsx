@@ -41,17 +41,17 @@ const Discover = () => {
   return (
     <List>
       <ListItem>
-        <NavLink activeClassName="active" to="/discover/upcoming">
+        <NavLink activeClassName="active" to="/moviesearch3/discover/upcoming">
           Upcoming
         </NavLink>
       </ListItem>
       <ListItem>
-        <NavLink activeClassName="active" to="/discover/top_rated">
+        <NavLink activeClassName="active" to="/moviesearch3/discover/top_rated">
           Top Rated
         </NavLink>
       </ListItem>
       <ListItem>
-        <NavLink activeClassName="active" to="/discover/popular">
+        <NavLink activeClassName="active" to="/moviesearch3/discover/popular">
           Popular
         </NavLink>
       </ListItem>
