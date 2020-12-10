@@ -104,7 +104,7 @@ const MovieDetail = ({ movie, collection }) => {
       } else {
         return (
           <CollectionContainer>
-            <h1 className="title">Part of</h1>
+            <h1 className="title">Collection</h1>
             <MovieList movies={collection.parts} />
           </CollectionContainer>
         );
