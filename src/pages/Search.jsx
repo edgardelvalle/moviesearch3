@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import MovieList from '../components/MovieList';
 import { getSearchedMovie, clearMovies } from '../actions/index';
 import Loader from '../components/Loader';
+import { Helmet } from 'react-helmet';
 
 const Search = props => {
   const { movies } = props;
@@ -22,6 +23,9 @@ const Search = props => {
     return (
       // <Loader />
       <div>
+        <Helmet>
+          <title>{`${searchedMovies} - search results`}</title>
+        </Helmet>
         <h1>{searchedMovies.toUpperCase()}</h1>
         <MovieList movies={movies.results} />
       </div>

@@ -3,10 +3,10 @@ import MovieCard from './MovieCard';
 
 const Cards = styled.div`
   display: flex;
+  position: relative;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: center;
-  width: 100%;
+  justify-content: space-evenly;
 `;
 
 const MovieList = ({ movies }) => {

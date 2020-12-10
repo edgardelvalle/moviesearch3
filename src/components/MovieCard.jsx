@@ -9,9 +9,10 @@ const MovieCard = ({ movie }) => {
 
   const Container = styled(motion.div)`
     position: relative;
-    width: 250px;
-    height: 375px;
-    max-height: 470px;
+    width: auto;
+    width: 200px;
+    height: auto;
+    max-height: 320px;
     margin: 10px;
     overflow: hidden;
     background-size: cover;
@@ -38,13 +39,13 @@ const MovieCard = ({ movie }) => {
   `;
 
   const Poster = styled.img`
-    width: auto;
+    width: 100%;
     height: 100%;
   `;
 
   const Title = styled.h1`
     position: absolute;
-    font-size: 2vw;
+    font-size: 1vw;
     margin: 0;
     right: 0;
     left: 0;

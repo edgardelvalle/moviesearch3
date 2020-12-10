@@ -8,18 +8,21 @@ import Genre from './Genre';
 import Movie from './Movie';
 
 import styled from 'styled-components';
-import { useState } from 'react';
+import { Helmet } from 'react-helmet';
 
 const history = createBrowserHistory();
 
 const Container = styled.div`
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  margin: 0 10%;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+
+  margin: 0 5%;
 `;
 
 const DiscoverWrapper = styled.div`
-  width: 80vw;
   display: flex;
   align-items: center;
   justify-content: center;

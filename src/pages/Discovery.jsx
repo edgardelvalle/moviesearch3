@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 
 import styled from 'styled-components';
 import Loader from '../components/Loader';
+import { Helmet } from 'react-helmet';
 
 const GenreList = styled.ul`
   list-style-type: none;
@@ -79,6 +80,7 @@ const Discovery = props => {
   } else {
     return (
       <div>
+        <Helmet>{discover}</Helmet>
         <h1>
           {header}
           <Subheader> {isFiltered && `> ${genreFilter.name}`}</Subheader>

@@ -6,7 +6,7 @@ const MovieDetail = ({ movie, collection }) => {
   const Container = styled.div`
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
 
     .data {
       display: flex;
@@ -81,7 +81,9 @@ const MovieDetail = ({ movie, collection }) => {
     border-left: 1px solid gray;
   `;
 
-  const CollectionContainer = styled.div``;
+  const CollectionContainer = styled.div`
+    width: 100%;
+  `;
 
   const {
     belongs_to_collection,
@@ -102,19 +104,20 @@ const MovieDetail = ({ movie, collection }) => {
       } else {
         return (
           <CollectionContainer>
+            <h1 className="title">Part of</h1>
             <MovieList movies={collection.parts} />
           </CollectionContainer>
         );
       }
     } else {
-      return <div>This movie is not a part of any collection</div>;
+      return '';
     }
   };
 
   return (
     <Container>
       <Tagline>{tagline}</Tagline>
-      <PosterContainer className="Poster container">
+      <PosterContainer>
         <Poster
           src={`https://image.tmdb.org/t/p/original/${backdrop_path}`}
           alt={`${original_title} poster`}
