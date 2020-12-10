@@ -38,18 +38,18 @@ const App = () => {
         </DiscoverWrapper>
 
         <Route exact path="https://edgardelvalle.github.io/moviesearch3/">
-          <Redirect to="/discover/popular" />
+          <Redirect to="/moviesearch3/discover/popular" />
         </Route>
-        <Route exact path="/search/:searchedMovies">
+        <Route exact path="/moviesearch3/search/:searchedMovies">
           <Search />
         </Route>
-        <Route exact path="/movie/:id">
+        <Route exact path="/moviesearch3/movie/:id">
           <Movie />
         </Route>
-        <Route exact path="/discover/:discover">
+        <Route exact path="/moviesearch3/discover/:discover">
           <Discovery />
         </Route>
-        <Route exact path="/genre/:genre">
+        <Route exact path="/moviesearch3/genre/:genre">
           <Genre />
         </Route>
       </Router>
