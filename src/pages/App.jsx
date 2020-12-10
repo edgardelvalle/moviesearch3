@@ -37,7 +37,7 @@ const App = () => {
           <SearchBar />
         </DiscoverWrapper>
 
-        <Route exact path="/">
+        <Route exact path="https://edgardelvalle.github.io/moviesearch3/">
           <Redirect to="/discover/popular" />
         </Route>
         <Route exact path="/search/:searchedMovies">
