@@ -7,12 +7,11 @@ const SearchWrapper = styled.div`
   position: relative;
   justify-content: center;
 `;
-
 const Input = styled.input`
   position: absolute;
   bottom: -17px;
 
-  background: url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png)
+  background: url('https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png')
     no-repeat 9px center;
   border: none;
   padding: 9px 5px 9px 32px;

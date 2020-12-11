@@ -22,6 +22,10 @@ export const FETCH_COLLECTION_LOADING = 'FETCH_COLLECTION_LOADING';
 export const FETCH_COLLECTION = 'FETCH_COLLECTION';
 export const FETCH_COLLECTION_SUCCESS = 'FETCH_COLLECTION_SUCCESS';
 
+export const FETCH_TRAILERS_LOADING = 'FETCH_TRAILERS_LOADING';
+export const FETCH_TRAILERS = 'FETCH_TRAILERS';
+export const FETCH_TRAILERS_SUCCESS = 'FETCH_TRAILERS_SUCCESS';
+
 export const getSearchedMovie = query => async dispatch => {
   dispatch({ type: FETCH_MOVIES_LOADING });
   const response = await tmdb.get('/search/movie', {
@@ -76,6 +80,15 @@ export const getCollection = id => async dispatch => {
   await dispatch({ type: FETCH_COLLECTION, payload: response.data });
 
   dispatch({ type: FETCH_COLLECTION_SUCCESS });
+};
+
+export const getTrailers = id => async dispatch => {
+  dispatch({ type: FETCH_TRAILERS_LOADING });
+
+  const response = await tmdb.get(`/movie/${id}/videos`);
+  await dispatch({ type: FETCH_TRAILERS, payload: response.data });
+
+  dispatch({ type: FETCH_TRAILERS_SUCCESS });
 };
 
 export const clearMovies = () => {

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import moment from 'moment';
 import MovieList from './MovieList';
 
-const MovieDetail = ({ movie, collection }) => {
+const MovieDetail = ({ movie, collection, trailers }) => {
   const Container = styled.div`
     display: flex;
     flex-direction: column;
@@ -24,17 +24,13 @@ const MovieDetail = ({ movie, collection }) => {
   const PosterContainer = styled.div`
     background-color: black;
     width: auto;
-    max-width: 60vw;
+    max-width: 70vw;
     height: auto;
     align-self: center;
     position: relative;
     font-size: 2vw;
     overflow: hidden;
     border-radius: 20px;
-
-    #title {
-      width: 100%;
-    }
 
     box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
       0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
@@ -48,37 +44,58 @@ const MovieDetail = ({ movie, collection }) => {
     overflow: hidden;
   `;
 
-  const Title = styled.h1`
-    background: linear-gradient(0deg, black);
-    width: 100%;
-    color: white;
-    position: absolute;
-    padding-left: 10px;
-    margin: 0;
-    bottom: 0;
-  `;
-
   const Details = styled.div`
-    flex-direction: column;
-    align-items: flex-start;
-    line-height: 0.75rem;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    width: 70%;
 
-    .info-items {
-      font-weight: 400;
+    h1 {
+      font-size: 2.5rem;
     }
 
-    .info-detail {
-      font-weight: 600;
+    .poster {
+      max-width: 80%;
+      border-radius: 20px;
     }
-  `;
 
-  const Overview = styled.p`
-    font-weight: 400;
-    line-height: 2rem;
-    width: 50%;
-    padding-left: 25px;
+    .movie-rating {
+      background-color: red;
+      color: white;
+      padding: 10px;
+      border-radius: 50px;
 
-    border-left: 1px solid gray;
+      transform: translateX(-50px);
+    }
+
+    ul {
+      list-style-type: none;
+      display: flex;
+      padding: 0;
+    }
+
+    li {
+      color: #717171;
+      padding-right: 10px;
+    }
+
+    p {
+      line-height: 1.5rem;
+    }
+
+    .movie-trailer-img {
+      border-radius: 20px;
+
+      transition: all 0.25s;
+
+      &:hover {
+        scale: 1.05;
+        z-index: 1000;
+        box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+          0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
+          0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+          0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12);
+      }
+    }
   `;
 
   const CollectionContainer = styled.div`
@@ -90,11 +107,13 @@ const MovieDetail = ({ movie, collection }) => {
     genres,
     original_title,
     backdrop_path,
+    poster_path,
     tagline,
     runtime,
     vote_average,
     release_date,
     overview,
+    title,
   } = movie;
 
   const Collection = () => {
@@ -122,30 +141,53 @@ const MovieDetail = ({ movie, collection }) => {
           src={`https://image.tmdb.org/t/p/original/${backdrop_path}`}
           alt={`${original_title} poster`}
         />
-        <div id="title">
-          <Title>{movie.title}</Title>
-        </div>
       </PosterContainer>
       <div className="data">
         <Details>
-          <span className="info-items">Duration:</span>
-          <p className="info-detail">
-            {`${Math.floor(runtime / 60)} h ${runtime % 60} min`}{' '}
-          </p>
-          <span className="info-items">Release Date:</span>
-          <p className="info-detail">
-            {moment(release_date).format('MMM Do, YYYY')}
-          </p>
-          <span className="info-items">Genres:</span>
-          <p>
-            {genres.map(genre => (
-              <span className="info-detail">{genre.name} </span>
-            ))}
-          </p>
-          <span className="info-items">Rated:</span>
-          <p className="info-detail">{vote_average} </p>
+          <div>
+            <img
+              className="poster"
+              src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
+              alt=""
+            />
+            <span className="movie-rating">{vote_average}</span>
+          </div>
+          <div className="movie-details">
+            <h1>{title}</h1>
+            <ul>
+              {genres.map(genre => {
+                return <li>{genre.name}</li>;
+              })}
+              <li className="info-detail">
+                | {`${Math.floor(runtime / 60)} h ${runtime % 60} min`}
+              </li>
+              <li className="info-detail">
+                | {moment(release_date).format('MMM Do, YYYY')}
+              </li>
+            </ul>
+            <p>{overview}</p>
+            <div className="movie-trailers">
+              <h2>Trailers</h2>
+              <ul>
+                {trailers.map(trailer => {
+                  return (
+                    <li className="movie-trailer" key={trailer.id}>
+                      <a
+                        href={`https://www.youtube.com/watch?v=${trailer.key}`}
+                      >
+                        <img
+                          className="movie-trailer-img"
+                          src={`https://img.youtube.com/vi/${trailer.key}/1.jpg`}
+                          alt=""
+                        />
+                      </a>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          </div>
         </Details>
-        <Overview>{overview}</Overview>
       </div>
       <Collection />
     </Container>

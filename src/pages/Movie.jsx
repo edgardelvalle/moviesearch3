@@ -1,6 +1,11 @@
 import MovieDetail from '../components/MovieDetail';
 import { connect } from 'react-redux';
-import { getMovieDetails, clearMovie, getCollection } from '../actions';
+import {
+  getMovieDetails,
+  clearMovie,
+  getCollection,
+  getTrailers,
+} from '../actions';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Loader from '../components/Loader';
@@ -15,10 +20,12 @@ const Container = styled.div`
 `;
 
 const Movie = props => {
-  const { movie, collection } = props;
+  const { movie, collection, trailers } = props;
+  console.log('Trailers ', trailers);
   const { id } = useParams();
   useEffect(() => {
     props.getMovieDetails(id);
+    props.getTrailers(id);
   }, [id]);
 
   useEffect(() => {
@@ -35,18 +42,30 @@ const Movie = props => {
         <Helmet>
           <title>{movie.name}</title>
         </Helmet>
-        <MovieDetail movie={movie} collection={collection} />
+        <MovieDetail
+          movie={movie}
+          collection={collection}
+          trailers={trailers.results.filter(
+            trailer => trailer.type === 'Trailer'
+          )}
+        />
       </Container>
     );
   }
 };
 
 const mapStateToProps = state => {
-  return { movie: state.movieDetail, collection: state.collection };
+  console.log(state);
+  return {
+    movie: state.movieDetail,
+    collection: state.collection,
+    trailers: state.trailers,
+  };
 };
 
 export default connect(mapStateToProps, {
   getMovieDetails,
   getCollection,
   clearMovie,
+  getTrailers,
 })(Movie);
