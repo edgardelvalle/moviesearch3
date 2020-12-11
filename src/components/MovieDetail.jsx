@@ -150,7 +150,7 @@ const MovieDetail = ({ movie, collection, trailers }) => {
               src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
               alt=""
             />
-            <span className="movie-rating">{vote_average}</span>
+            {/* <span className="movie-rating">{vote_average}</span> */}
           </div>
           <div className="movie-details">
             <h1>{title}</h1>

@@ -26,6 +26,7 @@ const Movie = props => {
   useEffect(() => {
     props.getMovieDetails(id);
     props.getTrailers(id);
+    props.clearMovie();
   }, [id]);
 
   useEffect(() => {
@@ -34,8 +35,12 @@ const Movie = props => {
     }
   }, [movie]);
 
-  if (movie.loading) {
-    return <Loader />;
+  if (movie.loading && collection.loading && trailers.loading) {
+    return (
+      <Container>
+        <Loader />
+      </Container>
+    );
   } else {
     return (
       <Container>
