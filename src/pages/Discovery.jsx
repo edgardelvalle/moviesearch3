@@ -80,7 +80,9 @@ const Discovery = props => {
   } else {
     return (
       <div>
-        <Helmet>{discover}</Helmet>
+        <Helmet>
+          <title>{header}</title>
+        </Helmet>
         <h1>
           {header}
           <Subheader> {isFiltered && `> ${genreFilter.name}`}</Subheader>

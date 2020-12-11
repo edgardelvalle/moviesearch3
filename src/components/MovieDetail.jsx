@@ -82,6 +82,10 @@ const MovieDetail = ({ movie, collection, trailers }) => {
       line-height: 1.5rem;
     }
 
+    .play-button {
+      height: 200px;
+      width: 200px;
+    }
     .movie-trailer-img {
       border-radius: 20px;
 
@@ -100,6 +104,11 @@ const MovieDetail = ({ movie, collection, trailers }) => {
 
   const CollectionContainer = styled.div`
     width: 100%;
+    justify-content: flex-start;
+
+    #collections {
+      justify-content: flex-start;
+    }
   `;
 
   const {
@@ -124,7 +133,7 @@ const MovieDetail = ({ movie, collection, trailers }) => {
         return (
           <CollectionContainer>
             <h1 className="title">Collection</h1>
-            <MovieList movies={collection.parts} />
+            <MovieList id="collections" movies={collection.parts} />
           </CollectionContainer>
         );
       }

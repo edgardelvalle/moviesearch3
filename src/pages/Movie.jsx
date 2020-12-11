@@ -21,7 +21,7 @@ const Container = styled.div`
 
 const Movie = props => {
   const { movie, collection, trailers } = props;
-  console.log('Trailers ', trailers);
+  console.log(movie);
   const { id } = useParams();
   useEffect(() => {
     props.getMovieDetails(id);
@@ -45,7 +45,7 @@ const Movie = props => {
     return (
       <Container>
         <Helmet>
-          <title>{movie.name}</title>
+          <title>{movie.title}</title>
         </Helmet>
         <MovieDetail
           movie={movie}
@@ -60,7 +60,6 @@ const Movie = props => {
 };
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
     movie: state.movieDetail,
     collection: state.collection,
