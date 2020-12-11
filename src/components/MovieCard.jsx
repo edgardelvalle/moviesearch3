@@ -11,8 +11,8 @@ const MovieCard = ({ movie }) => {
     position: relative;
     width: auto;
     width: 200px;
-    height: auto;
-    max-height: 320px;
+
+    height: 320px;
     margin: 10px;
     overflow: hidden;
     background-size: cover;

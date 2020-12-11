@@ -1,20 +1,20 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-
-const { NavLink, useParams } = require('react-router-dom');
+import { NavLink } from 'react-router-dom';
 
 const List = styled.ul`
   list-style-type: none;
-  padding: 0;
+  padding: 15px;
   display: flex;
   width: 30%;
   justify-content: space-around;
 `;
 
 const ListItem = styled.li`
+  transition: all 0.25s;
+
   font-size: 0.9rem;
   font-weight: 300;
-
   a {
     text-decoration: none;
 
