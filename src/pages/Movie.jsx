@@ -21,7 +21,6 @@ const Container = styled.div`
 
 const Movie = props => {
   const { movie, collection, trailers } = props;
-  console.log(movie);
   const { id } = useParams();
   useEffect(() => {
     props.getMovieDetails(id);

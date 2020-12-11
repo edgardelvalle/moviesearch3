@@ -119,7 +119,7 @@ const MovieDetail = ({ movie, collection, trailers }) => {
     poster_path,
     tagline,
     runtime,
-    vote_average,
+    // vote_average,
     release_date,
     overview,
     title,

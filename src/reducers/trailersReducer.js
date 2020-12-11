@@ -2,6 +2,7 @@ import {
   FETCH_TRAILERS,
   FETCH_TRAILERS_SUCCESS,
   FETCH_TRAILERS_LOADING,
+  CLEAR_MOVIE,
 } from '../actions';
 
 const initialState = {
@@ -18,6 +19,8 @@ export default (state = initialState, action) => {
       return { ...state, loading: true };
     case FETCH_TRAILERS_SUCCESS:
       return { ...state, loading: false };
+    case CLEAR_MOVIE:
+      return initialState;
     default:
       return state;
   }

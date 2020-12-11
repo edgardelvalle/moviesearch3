@@ -7,11 +7,13 @@ import {
   FETCH_DISCOVER_SUCCESS,
   FETCH_DISCOVER_ERROR,
   FETCH_DISCOVER_SEARCH,
+  CLEAR_MOVIES,
 } from '../actions';
 
 const initialState = {
   loading: true,
   error: null,
+  results: [],
 };
 
 export default (state = initialState, action) => {
@@ -25,6 +27,8 @@ export default (state = initialState, action) => {
     case FETCH_DISCOVER_SUCCESS:
     case FETCH_MOVIES_SUCCESS:
       return { ...state, loading: false };
+    case CLEAR_MOVIES:
+      return initialState;
     default:
       return state;
   }
