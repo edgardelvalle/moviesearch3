@@ -7,16 +7,21 @@ const MovieDetail = ({ movie, collection, trailers }) => {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 
     .data {
       display: flex;
       justify-content: space-around;
-      margin-top: 3rem;
+      margin: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      min-width: 100vw;
     }
   `;
 
   const Tagline = styled.h2`
-    font-size: 3vw;
+    font-size: 3rem;
     margin: 2rem;
     align-self: center;
   `;
@@ -31,6 +36,12 @@ const MovieDetail = ({ movie, collection, trailers }) => {
     font-size: 2vw;
     overflow: hidden;
     border-radius: 20px;
+
+    @media (max-width: 768px) {
+      min-width: 100vw;
+      border-radius: 0;
+      box-shadow: none;
+    }
 
     box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
       0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
@@ -82,6 +93,11 @@ const MovieDetail = ({ movie, collection, trailers }) => {
       line-height: 1.5rem;
     }
 
+  .movie-meta {
+    display: flex;
+     color #717171;
+    }
+
     .play-button {
       height: 200px;
       width: 200px;
@@ -100,15 +116,46 @@ const MovieDetail = ({ movie, collection, trailers }) => {
           0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12);
       }
     }
+
+    @media (max-width: 768px) {
+      display: flex;
+      width: 100%;
+
+      .poster {
+        display: none;
+      }
+
+      .movie-title {
+        line-height: auto;
+      }
+
+      .movie-meta {
+        flex-direction: column;
+        flex-wrap: wrap;
+        margin: 0;
+      }
+
+      .info-time {
+        display: flex;
+        margin: 0;
+        flex-direction: row;
+        p:first-child {
+          border-right: 1px solid #717171;
+          padding-right: 10px;
+          margin-right: 10px;
+        }
+      }
+
+      ul {
+        margin: 0;
+      }
+
+    }
   `;
 
   const CollectionContainer = styled.div`
     width: 100%;
     justify-content: flex-start;
-
-    #collections {
-      justify-content: flex-start;
-    }
   `;
 
   const {
@@ -162,18 +209,22 @@ const MovieDetail = ({ movie, collection, trailers }) => {
             {/* <span className="movie-rating">{vote_average}</span> */}
           </div>
           <div className="movie-details">
-            <h1>{title}</h1>
-            <ul>
-              {genres.map(genre => {
-                return <li>{genre.name}</li>;
-              })}
-              <li className="info-detail">
-                | {`${Math.floor(runtime / 60)} h ${runtime % 60} min`}
-              </li>
-              <li className="info-detail">
-                | {moment(release_date).format('MMM Do, YYYY')}
-              </li>
-            </ul>
+            <h1 className="movie-title">{title}</h1>
+            <div className="movie-meta">
+              <ul className="movie-data">
+                {genres.map(genre => {
+                  return <li className="movie-genre">{genre.name}</li>;
+                })}
+              </ul>
+              <div className="info-time">
+                <p className="info-detail">
+                  {`${Math.floor(runtime / 60)} h ${runtime % 60} min`}
+                </p>
+                <p className="info-detail">
+                  {moment(release_date).format('MMMM Do, YYYY')}
+                </p>
+              </div>
+            </div>
             <p>{overview}</p>
             <div className="movie-trailers">
               <h2>Trailers</h2>
