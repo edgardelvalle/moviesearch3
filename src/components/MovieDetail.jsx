@@ -117,6 +117,17 @@ const MovieDetail = ({ movie, collection, trailers }) => {
       }
     }
 
+    .info-time{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      p:first-child {
+        padding-right: 10px;
+        border-right: 1px solid #ccc;
+        margin-right: 10px;
+      }
+    }
+
     @media (max-width: 768px) {
       display: flex;
       width: 100%;

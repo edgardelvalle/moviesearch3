@@ -16,15 +16,15 @@ const ListItem = styled.li`
   font-size: 0.9rem;
   font-weight: 300;
   a {
+    color: black;
     text-decoration: none;
+  }
+  a:visited {
+    color: black;
+  }
 
-    &:visited {
-      color: black;
-    }
-
-    &:hover {
-      color: grey;
-    }
+  &:hover {
+    color: grey;
   }
   .active {
     color: black;
