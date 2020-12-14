@@ -8,7 +8,7 @@ const SearchWrapper = styled.div`
 
   @media (max-width: 768px) {
     width: 80%;
-    margin: 0 10% 5% 0;
+    margin: 0 10% 5% 10%;
   }
 `;
 const Input = styled.input`

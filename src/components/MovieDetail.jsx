@@ -13,7 +13,7 @@ const MovieDetail = ({ movie, collection, trailers }) => {
 
   const Tagline = styled.h2`
     font-size: 3rem;
-    margin: 2rem 0;
+    margin: 1rem;
   `;
 
   const PosterContainer = styled.div`
