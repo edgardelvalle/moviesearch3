@@ -5,7 +5,11 @@ import styled from 'styled-components';
 const SearchWrapper = styled.div`
   display: flex;
   position: relative;
-  justify-content: center;
+
+  @media (max-width: 768px) {
+    width: 80%;
+    margin: 0 10% 5% 0;
+  }
 `;
 const Input = styled.input`
   position: absolute;
@@ -24,7 +28,7 @@ const Input = styled.input`
 
   :focus {
     border: solid 1px #ccc;
-    width: 170px;
+    width: 160px;
     padding-left: 32px;
     color: #000;
     background-color: #fff;

@@ -23,13 +23,18 @@ const DiscoverWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 768px) {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
 `;
 
 const App = () => {
   return (
     <Container>
       <Router history={history}>
-        <DiscoverWrapper className="Nav">
+        <DiscoverWrapper>
           <Discover />
           <SearchBar />
         </DiscoverWrapper>

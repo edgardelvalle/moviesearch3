@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
@@ -8,11 +7,14 @@ const List = styled.ul`
   display: flex;
   width: 30%;
   justify-content: space-around;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const ListItem = styled.li`
   transition: all 0.25s;
-
   font-size: 0.9rem;
   font-weight: 300;
   a {
