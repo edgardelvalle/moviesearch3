@@ -45,7 +45,7 @@ const MovieCard = ({ movie }) => {
 
   const Title = styled.h1`
     position: absolute;
-    font-size: 1vw;
+    font-size: 1.5rem;
     margin: 0;
     right: 0;
     left: 0;
