@@ -4,7 +4,6 @@ import { createBrowserHistory } from 'history';
 import Search from './Search';
 import Discovery from './Discovery';
 import Discover from '../components/Discover';
-import Genre from './Genre';
 import Movie from './Movie';
 
 import styled from 'styled-components';
@@ -38,6 +37,9 @@ const App = () => {
         </DiscoverWrapper>
 
         <Route exact path="/">
+          <Redirect to="/moviesearch3" />
+        </Route>
+        <Route exact path="/moviesearch3">
           <Redirect to="/moviesearch3/discover/popular" />
         </Route>
         <Route exact path="/moviesearch3/search/:searchedMovies">
@@ -48,9 +50,6 @@ const App = () => {
         </Route>
         <Route exact path="/moviesearch3/discover/:discover">
           <Discovery />
-        </Route>
-        <Route exact path="/moviesearch3/genre/:genre">
-          <Genre />
         </Route>
       </Router>
     </Container>

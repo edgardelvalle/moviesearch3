@@ -3,22 +3,21 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
 const MovieCard = ({ movie }) => {
-  if (!movie) {
-    return <div>Movie not available</div>;
-  }
-
   const Container = styled(motion.div)`
     position: relative;
-    width: auto;
-    width: 200px;
+    width: 40%;
+    max-width: 12rem;
+    max-height: 306px;
 
-    height: 320px;
     margin: 10px;
     overflow: hidden;
     background-size: cover;
     transition: visibility ease-in-out 2ms;
     background-color: gray;
     border-radius: 20px;
+
+    display: flex;
+    justify-content: center;
 
     a {
       text-decoration: none;
@@ -39,6 +38,7 @@ const MovieCard = ({ movie }) => {
   `;
 
   const Poster = styled.img`
+    object-fit: cover;
     width: 100%;
     height: 100%;
   `;

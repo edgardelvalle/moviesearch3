@@ -177,7 +177,6 @@ const MovieDetail = ({ movie, collection, trailers }) => {
     poster_path,
     tagline,
     runtime,
-    // vote_average,
     release_date,
     overview,
     title,
@@ -217,7 +216,6 @@ const MovieDetail = ({ movie, collection, trailers }) => {
               src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
               alt=""
             />
-            {/* <span className="movie-rating">{vote_average}</span> */}
           </div>
           <div className="movie-details">
             <h1 className="movie-title">{title}</h1>
