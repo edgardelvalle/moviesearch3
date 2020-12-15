@@ -10,13 +10,14 @@ import Loader from '../components/Loader';
 import { Helmet } from 'react-helmet';
 
 const GenreList = styled.ul`
+  width: 100%;
   list-style-type: none;
   padding: 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
 
-  button {
+  .genre-select {
     font-size: 0.8rem;
     background: none;
     border: none;
@@ -24,6 +25,31 @@ const GenreList = styled.ul`
     &:hover {
       cursor: pointer;
       color: grey;
+    }
+
+    @media (max-width: 768px) {
+      white-space: nowrap;
+      font-size: 1rem;
+      border: 1px solid #717171;
+      border-radius: 1.5rem;
+      padding: 5px 0.9rem;
+      margin: 10px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    flex-wrap: nowrap;
+    overflow-y: hidden;
+    justify-content: flex-start;
+
+    .active {
+      color: #409cff;
+      border: 1px solid #409cff;
+
+      &:hover {
+        cursor: inherit;
+        color: #409cff;
+      }
     }
   }
 `;
@@ -36,6 +62,7 @@ const Subheader = styled.span`
 `;
 
 const Discovery = props => {
+  console.log(props);
   const [genreFilter, setGenreFilter] = useState({});
   const [isFiltered, setIsFiltered] = useState(false);
   const { discover } = useParams();
@@ -43,19 +70,22 @@ const Discovery = props => {
   const renderGenres = props.genres.loading ? (
     <div>Loading Genres</div>
   ) : (
-    props.genres.genres.map(genre => (
-      <li key={genre.id}>
-        <button
-          className={genreFilter.name == genre.name ? 'active' : ''}
-          onClick={() => {
-            setIsFiltered(true);
-            setGenreFilter(genre);
-          }}
-        >
-          {genre.name}
-        </button>
-      </li>
-    ))
+    props.genres.genres.map(genre => {
+      const filtered = genreFilter.name == genre.name && isFiltered;
+      return (
+        <li key={genre.id}>
+          <button
+            className={`genre-select ${filtered ? 'active' : ''}`}
+            onClick={() => {
+              setIsFiltered(true);
+              setGenreFilter(genre);
+            }}
+          >
+            {genre.name}
+          </button>
+        </li>
+      );
+    })
   );
 
   const filteredMovies = props.movies.loading ? (
@@ -90,7 +120,12 @@ const Discovery = props => {
         <div>
           <GenreList>
             <li>
-              <button onClick={() => setIsFiltered(false)}>All</button>
+              <button
+                className="genre-select"
+                onClick={() => setIsFiltered(false)}
+              >
+                All
+              </button>
             </li>
             {renderGenres}
           </GenreList>
