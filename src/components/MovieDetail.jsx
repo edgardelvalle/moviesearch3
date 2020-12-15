@@ -44,7 +44,7 @@ const MovieDetail = ({ movie, collection, trailers }) => {
   `;
 
   const Details = styled.div`
-    margin: 5% 10%;
+    margin: 3% 10%;
     display: grid;
     grid-template-columns: 1fr 3fr;
     
@@ -56,10 +56,12 @@ const MovieDetail = ({ movie, collection, trailers }) => {
 
     .movie-detail__title {
       font-size: 2.5rem;
+      margin: 10px 0 5px 0;
   }
 
 
     .movie-detail__meta {
+      
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -69,11 +71,18 @@ const MovieDetail = ({ movie, collection, trailers }) => {
     .movie-genres {
       list-style-type: none;
       display: flex;
+      flex-wrap: wrap;
       padding: 0;
+      line-height: 1.5rem;
     }
 
     .genre {
-      padding: 0 10px;
+      font-weight: 500;
+      padding: 0 15px 0 0;
+    }
+
+    .info-time{
+      display: flex;
     }
 
     .info-detail {
@@ -120,17 +129,6 @@ const MovieDetail = ({ movie, collection, trailers }) => {
       }
   }
 
-    .info-time{
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      p:first-child {
-        padding-right: 10px;
-        border-right: 1px solid #ccc;
-        margin-right: 10px;
-      }
-    }
-
     @media (max-width: 768px) {
       display: flex;
       width: 100vw;
@@ -140,14 +138,12 @@ const MovieDetail = ({ movie, collection, trailers }) => {
       }
 
       .info-time {
-        display: flex;
+        width: 100%;
         margin: 0;
-        flex-direction: row;
-        p:first-child {
-          border-right: 1px solid #717171;
-          padding-right: 10px;
-          margin-right: 10px;
-        }
+      }
+
+      .info-detail {
+        margin-left: 0;
       }
     }
   `;
@@ -213,12 +209,14 @@ const MovieDetail = ({ movie, collection, trailers }) => {
                 return <li className="genre">{genre.name}</li>;
               })}
             </ul>
-            <p className="info-detail">
-              {`${Math.floor(runtime / 60)} h ${runtime % 60} min`}
-            </p>
-            <p className="info-detail">
-              {moment(release_date).format('MMMM Do, YYYY')}
-            </p>
+            <div className="info-time">
+              <p className="info-detail">
+                {`${Math.floor(runtime / 60)} h ${runtime % 60} min`}
+              </p>
+              <p className="info-detail">
+                {moment(release_date).format('MMMM Do, YYYY')}
+              </p>
+            </div>
           </div>
 
           <p className="movie-detail__overview">{overview}</p>

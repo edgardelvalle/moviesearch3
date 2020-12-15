@@ -6,7 +6,7 @@ const Cards = styled.div`
   position: relative;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: center;
 `;
 
 const MovieList = ({ movies }) => {

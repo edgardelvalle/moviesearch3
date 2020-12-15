@@ -35,11 +35,7 @@ const Movie = props => {
   }, [movie]);
 
   if (movie.loading && collection.loading && trailers.loading) {
-    return (
-      <Container>
-        <Loader />
-      </Container>
-    );
+    return <Loader />;
   } else {
     return (
       <Container>
