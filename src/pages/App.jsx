@@ -39,15 +39,18 @@ const App = () => {
           <SearchBar />
         </DiscoverWrapper>
         <Route exact path="/">
-          <Redirect to="/discover/popular" />
+          <Redirect to="/moviesearch3/discover/popular" />
         </Route>
-        <Route exact path="/search/:searchedMovies">
+        <Route exact path="/moviesearch3">
+          <Redirect to="/moviesearch3/discover/popular" />
+        </Route>
+        <Route exact path="/moviesearch3/search/:searchedMovies">
           <Search />
         </Route>
-        <Route exact path="/movie/:id">
+        <Route exact path="/moviesearch3/movie/:id">
           <Movie />
         </Route>
-        <Route exact path="/discover/:discover">
+        <Route exact path="/moviesearch3/discover/:discover">
           <Discovery />
         </Route>
       </Router>
