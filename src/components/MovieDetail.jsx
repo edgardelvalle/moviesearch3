@@ -150,6 +150,15 @@ const MovieDetail = ({ movie, collection, trailers, relatedMovies, cast }) => {
 
   const CollectionContainer = styled.div`
     width: 90%;
+
+    .title {
+      padding: 5px 0;
+      align-self: center;
+      background-color: rgba(255, 255, 255, 0.95);
+      z-index: 9999;
+      position: sticky;
+      top: 0;
+    }
   `;
 
   const {
@@ -247,8 +256,8 @@ const MovieDetail = ({ movie, collection, trailers, relatedMovies, cast }) => {
           </div>
         </div>
       </Details>
-      <Collection />
       <Cast cast={cast} />
+      <Collection />
       <RelatedMovies />
     </Container>
   );

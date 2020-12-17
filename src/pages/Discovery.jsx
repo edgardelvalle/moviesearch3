@@ -9,6 +9,16 @@ import styled from 'styled-components';
 import Loader from '../components/Loader';
 import { Helmet } from 'react-helmet';
 
+const Container = styled.div`
+  .header {
+    z-index: 9999;
+    background-color: rgba(255, 255, 255, 0.95);
+    margin-left: 5%;
+    position: sticky;
+    top: 0;
+  }
+`;
+
 const GenreList = styled.ul`
   width: 100%;
   list-style-type: none;
@@ -44,12 +54,13 @@ const GenreList = styled.ul`
     justify-content: flex-start;
 
     .active {
-      color: #409cff;
-      border: 1px solid #409cff;
+      background-color: black;
+      color: white;
+      border: 1px solid white;
 
       &:hover {
         cursor: inherit;
-        color: #409cff;
+        color: white;
       }
     }
   }
@@ -109,11 +120,11 @@ const Discovery = props => {
     return <div>No movies found</div>;
   } else {
     return (
-      <div>
+      <Container>
         <Helmet>
           <title>{header}</title>
         </Helmet>
-        <h1>
+        <h1 className="header">
           {header}
           <Subheader> {isFiltered && `> ${genreFilter.name}`}</Subheader>
         </h1>
@@ -134,7 +145,7 @@ const Discovery = props => {
         <MovieList
           movies={isFiltered ? filteredMovies : props.movies.results}
         />
-      </div>
+      </Container>
     );
   }
 };
