@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 import moment from 'moment';
 import MovieList from './MovieList';
+import Cast from './Cast';
 
-const MovieDetail = ({ movie, collection, trailers }) => {
+const MovieDetail = ({ movie, collection, trailers, relatedMovies, cast }) => {
   const Container = styled.div`
     display: flex;
     flex-direction: column;
@@ -18,6 +19,7 @@ const MovieDetail = ({ movie, collection, trailers }) => {
 
   const PosterContainer = styled.div`
     max-width: 80%;
+    margin-bottom: 5%;
 
     @media (max-width: 768px) {
       align-self: flex-start;
@@ -29,7 +31,7 @@ const MovieDetail = ({ movie, collection, trailers }) => {
 
   const Poster = styled.img`
     width: 100%;
-    height: 100%;
+    height: auto;
     border-radius: 20px;
     box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
       0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
@@ -44,14 +46,14 @@ const MovieDetail = ({ movie, collection, trailers }) => {
   `;
 
   const Details = styled.div`
-    margin: 3% 10%;
+    width: 90%;
     display: grid;
     grid-template-columns: 1fr 3fr;
     
     .movie-detail {
-      @media (max-width: 768px) {
-      margin: 0 5%;
-    }
+        @media (max-width: 768px) {
+        
+      }
     }
 
     .movie-detail__title {
@@ -131,8 +133,6 @@ const MovieDetail = ({ movie, collection, trailers }) => {
 
     @media (max-width: 768px) {
       display: flex;
-      width: 100vw;
-
       .poster {
         display: none;
       }
@@ -149,8 +149,7 @@ const MovieDetail = ({ movie, collection, trailers }) => {
   `;
 
   const CollectionContainer = styled.div`
-    width: 100%;
-    justify-content: flex-start;
+    width: 90%;
   `;
 
   const {
@@ -183,6 +182,15 @@ const MovieDetail = ({ movie, collection, trailers }) => {
     }
   };
 
+  const RelatedMovies = () => {
+    return (
+      <CollectionContainer>
+        <h1 className="title">Related Movies</h1>
+        <MovieList id="collections" movies={relatedMovies.results} />
+      </CollectionContainer>
+    );
+  };
+
   return (
     <Container>
       <Tagline>{tagline}</Tagline>
@@ -192,7 +200,6 @@ const MovieDetail = ({ movie, collection, trailers }) => {
           alt={`${original_title} poster`}
         />
       </PosterContainer>
-
       <Details>
         <img
           className="poster"
@@ -240,8 +247,9 @@ const MovieDetail = ({ movie, collection, trailers }) => {
           </div>
         </div>
       </Details>
-
       <Collection />
+      <Cast cast={cast} />
+      <RelatedMovies />
     </Container>
   );
 };

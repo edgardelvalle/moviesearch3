@@ -18,6 +18,14 @@ export const FETCH_MOVIEDETAIL_LOADING = 'FETCH_MOVIEDETAIL_LOADING';
 export const FETCH_MOVIEDETAIL = 'FETCH_MOVIEDETAIL';
 export const FETCH_MOVIEDETAIL_SUCCESS = 'FETCH_MOVIEDETAIL_SUCCESS';
 
+export const FETCH_RELATED_LOADING = 'FETCH_RELATED_LOADING';
+export const FETCH_RELATED = 'FETCH_RELATED';
+export const FETCH_RELATED_SUCCESS = 'FETCH_RELATED_SUCCESS';
+
+export const FETCH_CAST_LOADING = 'FETCH_CAST_LOADING';
+export const FETCH_CAST = 'FETCH_CAST';
+export const FETCH_CAST_SUCCESS = 'FETCH_CAST_SUCCESS';
+
 export const FETCH_COLLECTION_LOADING = 'FETCH_COLLECTION_LOADING';
 export const FETCH_COLLECTION = 'FETCH_COLLECTION';
 export const FETCH_COLLECTION_SUCCESS = 'FETCH_COLLECTION_SUCCESS';
@@ -76,6 +84,15 @@ export const getMovieDetails = id => async dispatch => {
   dispatch({ type: FETCH_MOVIEDETAIL_SUCCESS });
 };
 
+export const getRelatedMovies = id => async dispatch => {
+  dispatch({ type: FETCH_RELATED_LOADING });
+
+  const response = await tmdb.get(`/movie/${id}/similar`);
+  await dispatch({ type: FETCH_RELATED, payload: response.data });
+
+  dispatch({ type: FETCH_RELATED_SUCCESS });
+};
+
 export const getCollection = id => async dispatch => {
   dispatch({ type: FETCH_COLLECTION_LOADING });
 
@@ -83,6 +100,15 @@ export const getCollection = id => async dispatch => {
   await dispatch({ type: FETCH_COLLECTION, payload: response.data });
 
   dispatch({ type: FETCH_COLLECTION_SUCCESS });
+};
+
+export const getCast = id => async dispatch => {
+  dispatch({ type: FETCH_CAST_LOADING });
+
+  const response = await tmdb.get(`/movie/${id}/credits`);
+  await dispatch({ type: FETCH_CAST, payload: response.data });
+
+  dispatch({ type: FETCH_CAST_SUCCESS });
 };
 
 export const getTrailers = id => async dispatch => {

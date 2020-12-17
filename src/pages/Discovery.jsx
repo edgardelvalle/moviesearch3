@@ -40,6 +40,7 @@ const GenreList = styled.ul`
   @media (max-width: 768px) {
     flex-wrap: nowrap;
     overflow-y: hidden;
+
     justify-content: flex-start;
 
     .active {
@@ -62,7 +63,6 @@ const Subheader = styled.span`
 `;
 
 const Discovery = props => {
-  console.log(props);
   const [genreFilter, setGenreFilter] = useState({});
   const [isFiltered, setIsFiltered] = useState(false);
   const { discover } = useParams();

@@ -34,6 +34,26 @@ const Input = styled.input`
     background-color: #fff;
     cursor: auto;
   }
+
+  @media (max-width: 768px) {
+    border-radius: 1em;
+    border: solid 1px #ccc;
+    width: 100%;
+    padding-left: 32px;
+    color: #000;
+    background-color: #fff;
+    cursor: auto;
+
+    :focus {
+      border-radius: 1em;
+      border: solid 1px #ccc;
+      width: 100%;
+      padding-left: 32px;
+      color: #000;
+      background-color: #fff;
+      cursor: auto;
+    }
+  }
 `;
 
 const SearchBar = () => {

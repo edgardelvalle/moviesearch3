@@ -5,6 +5,8 @@ import {
   clearMovie,
   getCollection,
   getTrailers,
+  getRelatedMovies,
+  getCast,
 } from '../actions';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
@@ -20,12 +22,18 @@ const Container = styled.div`
 `;
 
 const Movie = props => {
-  const { movie, collection, trailers } = props;
+  const { movie, collection, trailers, related, cast } = props;
+
   const { id } = useParams();
   useEffect(() => {
     props.getMovieDetails(id);
     props.getTrailers(id);
-    props.clearMovie();
+    props.getRelatedMovies(id);
+    props.getCast(id);
+
+    return () => {
+      props.clearMovie();
+    };
   }, [id]);
 
   useEffect(() => {
@@ -48,6 +56,8 @@ const Movie = props => {
           trailers={trailers.results.filter(
             trailer => trailer.type === 'Trailer'
           )}
+          relatedMovies={related}
+          cast={cast}
         />
       </Container>
     );
@@ -59,12 +69,16 @@ const mapStateToProps = state => {
     movie: state.movieDetail,
     collection: state.collection,
     trailers: state.trailers,
+    related: state.related,
+    cast: state.cast,
   };
 };
 
 export default connect(mapStateToProps, {
   getMovieDetails,
+  getRelatedMovies,
   getCollection,
+  getCast,
   clearMovie,
   getTrailers,
 })(Movie);
