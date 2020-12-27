@@ -11,7 +11,7 @@ const Container = styled.div`
   .header {
     z-index: 9999;
     background-color: rgba(255, 255, 255, 0.95);
-    margin-left: 5%;
+    padding-left: 5%;
     position: sticky;
     top: 0;
   }

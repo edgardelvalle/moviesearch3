@@ -1,12 +1,21 @@
 # Movie Library
 
-This is the first project I made to put all of my skills to practice
+Movie library is web app that lets your search for movies and find collections(if any) of the movie you have chosen.
 
-## Notable technology used
+![Movie Library Screenshot](https://imgur.com/F6B3mha.png)
 
-ReactJS
-React Router
-Redux
-Redux Think
-Styled Components
-Framer motion
+## Demo
+
+[Visit site here.](https://edgardelvalle.github.io/moviesearch3)
+
+## This site is built with
+
+- [ReactJS](https://reactjs.org/)
+- [styled-components](https://styled-components.com/)
+- [React Router](https://reactrouter.com/)
+- [Redux](https://react-redux.js.org/)
+- [Axios](https://www.npmjs.com/package/axios)
+
+## Author
+
+Edgar Del Valle
