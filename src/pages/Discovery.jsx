@@ -17,10 +17,15 @@ const Container = styled.div`
     position: sticky;
     top: 0;
   }
+
+  .genre-area {
+    display: flex;
+    justify-content: center;
+  }
 `;
 
 const GenreList = styled.ul`
-  width: 100%;
+  width: 80%;
   list-style-type: none;
   padding: 0;
   display: flex;
@@ -128,7 +133,7 @@ const Discovery = props => {
           {header}
           <Subheader> {isFiltered && `> ${genreFilter.name}`}</Subheader>
         </h1>
-        <div>
+        <div className="genre-area">
           <GenreList>
             <li>
               <button

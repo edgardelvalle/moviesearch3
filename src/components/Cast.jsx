@@ -12,17 +12,31 @@ const Container = styled.div`
   }
 
   .cast-item {
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 100%;
     margin: 10px;
   }
 
   .cast-img {
     border-radius: 10px;
-    height: 100%;
+    height: 150px;
     width: auto;
   }
+  .cast-name {
+    color: black;
+    margin-top: 5px;
+    text-align: center;
+  }
+
+  .place-holder {
+    background-color: #c2c2c2;
+    height: 150px;
+    width: 100px;
+    border-radius: 10px;
+  }
 `;
+
+const profilePicPlaceHolder = <div className="place-holder"></div>;
 
 const Cast = ({ cast }) => {
   const actors = cast.cast.filter(
@@ -35,11 +49,17 @@ const Cast = ({ cast }) => {
       <ul className="cast-list">
         {actors.map(actor => (
           <li key={actor.id} className="cast-item">
-            <img
-              className="cast-img"
-              src={`https://image.tmdb.org/t/p/w500/${actor.profile_path}`}
-              alt=""
-            />
+            {actor.profile_path ? (
+              <img
+                className="cast-img"
+                src={`https://image.tmdb.org/t/p/w500/${actor.profile_path}`}
+                alt={`${actor.name} img`}
+              />
+            ) : (
+              profilePicPlaceHolder
+            )}
+
+            <p className="cast-name">{actor.name}</p>
           </li>
         ))}
       </ul>
