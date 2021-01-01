@@ -49,7 +49,7 @@ const MovieDetail = ({ movie, collection, trailers, relatedMovies, cast }) => {
     width: 90%;
     display: grid;
     grid-template-columns: 1fr 3fr;
-    
+
     .movie-detail {
         @media (max-width: 768px) {
         
@@ -172,6 +172,7 @@ const MovieDetail = ({ movie, collection, trailers, relatedMovies, cast }) => {
     release_date,
     overview,
     title,
+    vote_average,
   } = movie;
 
   const Collection = () => {
@@ -219,6 +220,7 @@ const MovieDetail = ({ movie, collection, trailers, relatedMovies, cast }) => {
         <div className="movie-detail">
           <h1 className="movie-detail__title">{title}</h1>
 
+          <p>{vote_average}</p>
           <div className="movie-detail__meta">
             <ul className="movie-genres">
               {genres.map(genre => {

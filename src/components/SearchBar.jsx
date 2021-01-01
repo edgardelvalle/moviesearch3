@@ -63,7 +63,7 @@ const SearchBar = () => {
   function handleSubmitForm(e) {
     e.preventDefault();
     if (query) {
-      history.push(`/moviesearch3/search/${query}`);
+      history.push(`/search/${query}`);
       setQuery('');
     }
   }
