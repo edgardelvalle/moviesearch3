@@ -61,6 +61,13 @@ const MovieDetail = ({ movie, collection, trailers, relatedMovies, cast }) => {
       margin: 10px 0 5px 0;
   }
 
+  .vote {
+    color: #2d2d2d;
+    font-size: 1rem;
+    padding: 0;
+    margin: 10px 0 0 0;
+  }
+
 
     .movie-detail__meta {
       
@@ -219,8 +226,7 @@ const MovieDetail = ({ movie, collection, trailers, relatedMovies, cast }) => {
 
         <div className="movie-detail">
           <h1 className="movie-detail__title">{title}</h1>
-
-          <p>{vote_average}</p>
+          <p className="vote">{vote_average} &#9733;</p>
           <div className="movie-detail__meta">
             <ul className="movie-genres">
               {genres.map(genre => {
